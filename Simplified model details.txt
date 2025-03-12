@@ -1,0 +1,30 @@
+Simplified model (did not use carrying capacity by hexagon)
+
+Yi∼Bernoulli(pi)
+where pi is the probability of Anopheles stephensi presence.
+Predictor covariates
+	X1 = Built volume
+	X2 = tcb (Tasselled Cap Brightness)
+	X3 = tcw (Tasselled Cap Wetness)
+	X4 = estimated climatic relative abundance for An. stephensi
+The predictors are combined linearly
+ηi=β0+β1X1i+β2X2i+β3X3i+β4X4i
+where:
+	ηi is the log-odds 
+	β0 is the intercept
+	β1,β2,...,β4 are the regression coefficients for each predictor
+To get the probability of presence pi, the logistic (sigmoid) function ensured pi is between 0 and 1.
+1 / (1 + e^(-ηi ))
+Priors
+Assumption of normal priors. Where N(0,1) is a standard normal distribution
+βj∼N(0,1),for j=0,1,2,3,4
+
+Predicted probabilities
+Pnew=1/(1+e^(-(β0+β1X1+⋯β4X4) ))
+Prediction into new locations
+Ynew∼Bernoulli(Pnew)
+
+
+Next steps:
+	Work on the Kenya only model
+	Re-try the model incorporating carrying capacity in hexagons
